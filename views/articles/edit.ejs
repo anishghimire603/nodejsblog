@@ -1,0 +1,4 @@
+<h1 class="text-center mt-4 mb-4">Edit Blog Post</h1>
+<form action="/articles/<%= article.id %>?_method=PUT" method="POST">
+  <%- include('_form_fields') %>
+</form>

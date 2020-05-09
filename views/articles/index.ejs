@@ -1,0 +1,19 @@
+<h1 class="text-center mt-4">Latest Blogs</h1>
+
+<% articles.forEach((article) => { %>
+<div class="card mt-4 mb-4">
+  <div class="card-body">
+    <h2 class="card-title"><%= article.title %></h2>
+    <div class="card-subtitle text-muted mb-2">
+      <%= article.createdAt.toLocaleDateString() %>
+    </div>
+    <div class="card-text mb-3">
+      <%= article.markdown.substring(0,100) %>...
+    </div>
+    <a href="/articles/<%= article.slug %> " class="btn btn-outline-success"
+      >Read More</a
+    >
+  </div>
+</div>
+
+<% }) %>
