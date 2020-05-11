@@ -48,8 +48,12 @@ router.delete("/:id", ensureAuthenticated, async (req, res) => {
 function saveArticleAndRedirect(path) {
     return async (req, res) => {
         let article = req.article
+
+        //capitalize the first letter of user
+        username = req.user.name
+        capital = username.charAt(0).toUpperCase() + username.slice(1)
         article.author = {
-            username: req.user.name,
+            username: capital,
             id: req.user._id,
             email: req.user.email
         }

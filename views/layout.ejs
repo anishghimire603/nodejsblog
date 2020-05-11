@@ -44,9 +44,9 @@
               <a class="nav-item nav-link" href="/users/login">Login</a>
               <a class="nav-item nav-link" href="/users/register">Sign Up</a>
               <% } else{%>
-              <a href="#" class="nav-item nav-link"
-                >Signed In as <%= currentUser.name %>
-              </a>
+              <div class="user-icon mr-3 nav-item">
+                <a href="#"><%= currentUser.name.charAt(0) %> </a>
+              </div>
               <a href="/users/logout" class="btn btn-secondary ml-auto"
                 >Logout</a
               >

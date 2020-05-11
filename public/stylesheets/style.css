@@ -1,4 +1,25 @@
 .user {
-  color: green;
+  color: rgb(233, 85, 66);
   font-size: 17px;
+}
+
+.user-icon {
+  background-color: white;
+  border-radius: 50%;
+  font-size: 23px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 35px;
+  cursor: pointer;
+}
+
+.user-icon a {
+  color: red;
+  text-transform: uppercase;
+}
+.article-title {
+  color: grey;
+  text-transform: capitalize;
 }

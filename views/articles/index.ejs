@@ -3,8 +3,10 @@
 <% articles.forEach((article) => { %>
 <div class="card mt-4 mb-4">
   <div class="card-body">
-    <h1 class="card-title"><%= article.title %></h1>
-    <p class="user"><%= article.author.username %></p>
+    <h1 class="card-title article-title"><%= article.title %></h1>
+    <p class="user">
+      <i class="fas fa-user-circle mr-1"></i><%= article.author.username %>
+    </p>
     <div class="card-subtitle text-muted mb-2">
       <%= article.createdAt.toLocaleDateString() %>
     </div>
