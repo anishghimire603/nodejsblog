@@ -18,7 +18,12 @@ var blogSchema = mongoose.Schema({
         required: true
     },
     author: {
-        type: String
+        username: String,
+        id: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'User'
+        },
+        email: String
     },
     createdAt: {
         type: Date,

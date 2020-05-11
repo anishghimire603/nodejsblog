@@ -1,8 +1,7 @@
 const router = require("express").Router();
 
 const Blog = require("../Database/models/blogModel")
-const Comment = require("../Database/models/commentModel")
-const checkAllRoutes = require("../middleware/allRoutes")
+
 const { ensureAuthenticated } = require('../config/auth');
 
 
@@ -49,10 +48,15 @@ router.delete("/:id", ensureAuthenticated, async (req, res) => {
 function saveArticleAndRedirect(path) {
     return async (req, res) => {
         let article = req.article
-        article.author = req.user.id
+        article.author = {
+            username: req.user.name,
+            id: req.user._id,
+            email: req.user.email
+        }
         article.title = req.body.title
         article.description = req.body.description
         article.markdown = req.body.markdown
+
 
         try {
             article = await article.save()

@@ -26,10 +26,14 @@ router.post("/:slug/comments", ensureAuthenticated, (req, res) => {
             if (err) {
                 console.log(err)
             }
-            console.log(comment)
+            //add name and id to commnt
+            comment.author.id = req.user._id
+            comment.author.username = req.user.name
+            //save comment
+            comment.save()
             blog.comments.push(comment);
-            console.log(blog)
             blog.save();
+            console.log(comment)
             res.redirect("/articles/" + blog.slug)
         })
     })

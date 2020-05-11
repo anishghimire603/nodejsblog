@@ -16,7 +16,9 @@ const Blog = require("./Database/models/blogModel")
 
 const app = express();
 connectToDatabase()
-seedDB()
+
+//seed database
+// seedDB()  
 
 
 //Passport config

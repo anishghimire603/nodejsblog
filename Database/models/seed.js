@@ -22,7 +22,7 @@ const seedDB = () => {
         }
         console.log('Removed all blogs')
 
-        //Add a blog
+        //     //Add a blog
         data.forEach((seed) => {
             Blog.create(seed, (err, blog) => {
                 if (err) {
