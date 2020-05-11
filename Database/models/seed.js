@@ -23,26 +23,26 @@ const seedDB = () => {
         console.log('Removed all blogs')
 
         //     //Add a blog
-        data.forEach((seed) => {
-            Blog.create(seed, (err, blog) => {
-                if (err) {
-                    console.log(err)
-                }
-                console.log("added a blog")
-                //Create a comment
-                Comment.create({
-                    text: "This place is great",
-                    author: "sagar"
-                }, (err, comment) => {
-                    if (err) {
-                        console.log(err)
-                    }
-                    blog.comments.push(comment)
-                    blog.save()
-                    console.log("Created new comment")
-                })
-            })
-        })
+        // data.forEach((seed) => {
+        //     Blog.create(seed, (err, blog) => {
+        //         if (err) {
+        //             console.log(err)
+        //         }
+        //         console.log("added a blog")
+        //         //Create a comment
+        //         Comment.create({
+        //             text: "This place is great",
+        //             author: "sagar"
+        //         }, (err, comment) => {
+        //             if (err) {
+        //                 console.log(err)
+        //             }
+        //             blog.comments.push(comment)
+        //             blog.save()
+        //             console.log("Created new comment")
+        //         })
+        //     })
+        // })
     });
 
 }

@@ -1,13 +1,26 @@
 <a href="/" class="btn btn-info mt-5">All Articles</a>
+<% if(currentUser && article.author.id.equals(currentUser._id)) { %>
 <a href="/articles/edit/<%= article.id %> " class="btn btn-secondary mt-5"
   >Edit</a
 >
+<form
+  action="/articles/<%= article.id %>?_method=DELETE"
+  method="POST"
+  class="d-inline mt-5"
+>
+  <button class="btn btn-danger mt-5">Delete</button>
+</form>
+<% } %>
+
 <p class="user mt-3">
   <i class="fas fa-user-circle mr-1"></i><%= article.author.username %>
 </p>
 <h1 class="article-title mt-1"><%= article.title %></h1>
 
-<div class="mb-2"><%= article.createdAt.toLocaleDateString()%></div>
+<div class="mb-2">
+  <i class="far fa-calendar-alt mr-2"></i><%=
+  article.createdAt.toLocaleDateString()%>
+</div>
 <div class="mt-3 mb-3">
   <%- article.sanitizedHtml %>
 </div>
@@ -18,8 +31,8 @@
   >Add Comment</a
 >
 
-<% article.comments.forEach(comment => { %>
-<div class="card p-3 mt-2">
+<div class="card p-3 mt-2 mb-4">
+  <% article.comments.forEach(comment => { %>
   <div class="card m-2">
     <div class="card-body">
       <div class="card-title">
@@ -29,6 +42,11 @@
         </p>
         <span class="d-block text-right">10 days ago</span>
         <p class="card-text"><%= comment.text %></p>
+        <a
+          href="/articles/<%= article.slug %>/comments/<%= comment._id %>/edit  "
+          class="btn btn-outline-primary btn-sm"
+          >Edit</a
+        >
       </div>
     </div>
   </div>

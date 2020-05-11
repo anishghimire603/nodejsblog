@@ -39,5 +39,31 @@ router.post("/:slug/comments", ensureAuthenticated, (req, res) => {
     })
 })
 
+router.get("/:slug/comments/:id/edit", (req, res) => {
+    Comment.findById(req.params.id, (err, comment) => {
+        if (err) {
+            console.log(err)
+            req.redirect("back")
+        } else {
+            res.render("comments/edit", { slug: req.params.slug, comment: comment })
+
+        }
+    })
+})
+
+router.put('/:slug/comments/:id', async (req, res) => {
+    console.log(req.params)
+    try {
+        console.log(req)
+        await Comment.findByIdAndUpdate(req.params.id, req.body.text, { new: true })
+        res.redirect("/articles/" + req.params.slug)
+
+    } catch (err) {
+        console.log(err)
+        res.redirect("back")
+    }
+})
+
+
 
 module.exports = router

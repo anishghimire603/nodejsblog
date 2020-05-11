@@ -5,7 +5,6 @@ const passport = require("passport")
 const flash = require("connect-flash")
 const methodOverride = require('method-override')
 const session = require("express-session")
-const User = require("./Database/models/userModel")
 const seedDB = require("./Database/models/seed")
 //Routes
 const articleRouter = require("./routes/articles")
@@ -18,7 +17,7 @@ const app = express();
 connectToDatabase()
 
 //seed database
-// seedDB()  
+// seedDB()
 
 
 //Passport config

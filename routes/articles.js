@@ -14,13 +14,17 @@ router.get("/new", ensureAuthenticated, (req, res) => {
     res.render("articles/new", { article: new Blog() })
 })
 
-router.get("/edit/:id", ensureAuthenticated, async (req, res) => {
-    const article = await Blog.findById(req.params.id);
-    res.render("articles/edit", { article: article })
+router.get("/edit/:id", checkBlogOwnerShip, async (req, res) => {
+
+    Blog.findById(req.params.id, (err, article) => {
+        res.render("articles/edit", { article: article })
+    })
+
+
 })
 
 router.get("/:slug", async (req, res) => {
-    const article = await Blog.findOne({ slug: req.params.slug }).populate('comments').exec((err, article) => {
+    await Blog.findOne({ slug: req.params.slug }).populate('comments').exec((err, article) => {
         if (err) {
             console.log(err)
         }
@@ -34,12 +38,12 @@ router.post("/", async (req, res, next) => {
     next()
 }, saveArticleAndRedirect("new"))
 
-router.put("/:id", ensureAuthenticated, async (req, res, next) => {
+router.put("/:id", checkBlogOwnerShip, ensureAuthenticated, async (req, res, next) => {
     req.article = await Blog.findById(req.params.id)
     next()
 }, saveArticleAndRedirect("edit"))
 
-router.delete("/:id", ensureAuthenticated, async (req, res) => {
+router.delete("/:id", checkBlogOwnerShip, ensureAuthenticated, async (req, res) => {
     await Blog.findByIdAndDelete(req.params.id)
     res.redirect("/")
 })
@@ -71,5 +75,30 @@ function saveArticleAndRedirect(path) {
         }
 
     }
+}
+
+function checkBlogOwnerShip(req, res, next) {
+
+    if (req.isAuthenticated()) {
+
+        Blog.findById(req.params.id, (err, article) => {
+            if (err) {
+                res.redirect("back")
+            } else {
+                //does the user own the blog
+                if (article.author.id.equals(req.user._id)) {
+                    next()
+
+                } else {
+                    res.redirect("back")
+                }
+            }
+        })
+
+    } else {
+        req.flash()
+        res.redirect("back")
+    }
+
 }
 module.exports = router
