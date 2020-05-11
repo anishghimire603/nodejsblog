@@ -13,6 +13,15 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    isLogged: {
+        type: Boolean
+    },
+    blog: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Blog'
+        }
+    ],
     date: {
         type: Date,
         default: Date.now

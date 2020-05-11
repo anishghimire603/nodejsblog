@@ -38,11 +38,19 @@
             <div class="navbar-nav">
               <a class="nav-item nav-link active" href="/">Home</a>
               <a class="nav-item nav-link" href="/articles/new">New Blog</a>
+            </div>
+            <div class="navbar-nav ml-auto">
+              <% if (!currentUser) {%>
               <a class="nav-item nav-link" href="/users/login">Login</a>
               <a class="nav-item nav-link" href="/users/register">Sign Up</a>
+              <% } else{%>
+              <a href="#" class="nav-item nav-link"
+                >Signed In as <%= currentUser.name %>
+              </a>
               <a href="/users/logout" class="btn btn-secondary ml-auto"
                 >Logout</a
               >
+              <% } %>
             </div>
           </div>
         </div>

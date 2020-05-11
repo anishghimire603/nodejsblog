@@ -11,8 +11,7 @@ var blogSchema = mongoose.Schema({
         required: true
     },
     description: {
-        type: String,
-        required: true
+        type: String
     },
     markdown: {
         type: String,

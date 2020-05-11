@@ -2,6 +2,7 @@ const router = require("express").Router();
 const User = require("../Database/models/userModel")
 const bcrypt = require("bcrypt")
 const passport = require("passport")
+const { ensureAuthenticated } = require("../config/auth")
 
 
 
@@ -38,7 +39,8 @@ router.post("/register", (req, res) => {
         res.render("register", {
             errors,
             name,
-            email
+            email,
+
         })
     } else {
         //Validation Pass
@@ -54,11 +56,12 @@ router.post("/register", (req, res) => {
                     })
                 } else {
                     const newUser = new User({
-                        name,
-                        email,
-                        password
+                        name: name,
+                        email: email,
+                        password: password,
+                        blog: []
                     });
-
+                    console.log(newUser)
                     //hash password
                     bcrypt.genSalt(10, (err, salt) => {
                         if (err) throw err;
@@ -89,11 +92,13 @@ router.post('/login', (req, res, next) => {
         successRedirect: '/',
         failureRedirect: '/users/login',
         failureFlash: true
-    })(req, res, next);
+    })(req, res, next)
+
+
 });
 
 //Logout handel
-router.get("/logout", (req, res) => {
+router.get("/logout", ensureAuthenticated, (req, res) => {
     req.logout();
     req.flash('success_msg', 'You are logged out')
     res.redirect("/users/login")

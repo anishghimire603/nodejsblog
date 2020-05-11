@@ -5,14 +5,18 @@ const passport = require("passport")
 const flash = require("connect-flash")
 const methodOverride = require('method-override')
 const session = require("express-session")
-
+const User = require("./Database/models/userModel")
+const seedDB = require("./Database/models/seed")
 //Routes
 const articleRouter = require("./routes/articles")
-
+const commentRouter = require("./routes/comments")
+const checkAllRoutes = require("./middleware/allRoutes")
 const Blog = require("./Database/models/blogModel")
+
 
 const app = express();
 connectToDatabase()
+seedDB()
 
 
 //Passport config
@@ -28,7 +32,7 @@ app.set("view engine", 'ejs')
 app.use(express.urlencoded({ extended: false }))
 app.use(methodOverride("_method"));
 
-
+checkAllRoutes
 
 //Express session middleware
 app.use(session({
@@ -54,17 +58,20 @@ app.use((req, res, next) => {
 
 app.use(express.urlencoded({ extended: false }))
 
+
+
 //Article router
-app.use('/articles', articleRouter)
+app.use('/articles', checkAllRoutes, articleRouter)
+app.use('/articles', commentRouter)
+
 
 //Restful Routes
 app.get('/', async (req, res) => {
     const articles = await Blog.find().sort({ createdAt: 'desc' })
-    res.render("articles/index", { articles: articles })
-
+    res.render("articles/index", { articles: articles, currentUser: req.user })
 })
 
-app.use("/users", require('./routes/users'))
+app.use("/users", checkAllRoutes, require('./routes/users'))
 
 
 
