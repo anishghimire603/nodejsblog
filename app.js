@@ -6,13 +6,14 @@ const flash = require("connect-flash")
 const methodOverride = require('method-override')
 const session = require("express-session")
 const seedDB = require("./Database/models/seed")
-const dotenv = require("dotenv")
-dotenv.config()
+
 //Routes
 const articleRouter = require("./routes/articles")
 const commentRouter = require("./routes/comments")
 const checkAllRoutes = require("./middleware/allRoutes")
 const Blog = require("./Database/models/blogModel")
+const dotenv = require("dotenv")
+dotenv.config()
 
 
 const app = express();
