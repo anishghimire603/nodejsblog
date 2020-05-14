@@ -36,6 +36,7 @@ nav {
   text-transform: uppercase;
 }
 .article-title {
+  letter-spacing: 0.1rem;
   color: grey;
   text-transform: capitalize;
   font-family: 'Lato', sans-serif;
@@ -50,4 +51,9 @@ nav {
 .container img {
   height: 50%;
   width: 60%;
+}
+
+.article-body {
+  font-size: 18px;
+  letter-spacing: 0.1rem;
 }
