@@ -15,14 +15,21 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css"
     />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@1,300&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="/stylesheets/style.css" />
+
     <title>Node.js Blog App</title>
   </head>
   <body>
     <div class="header">
       <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container">
-          <a class="navbar-brand" href="#">Fusion Blogs</a>
+          <a class="navbar-brand" href="/"
+            ><img src="/imgs/logo.png" alt="logo"
+          /></a>
           <button
             class="navbar-toggler"
             type="button"
@@ -39,13 +46,15 @@
               <a class="nav-item nav-link active" href="/">Home</a>
               <a class="nav-item nav-link" href="/articles/new">New Blog</a>
             </div>
-            <div class="navbar-nav ml-auto">
+            <div class="navbar-nav second ml-auto">
               <% if (!currentUser) {%>
               <a class="nav-item nav-link" href="/users/login">Login</a>
               <a class="nav-item nav-link" href="/users/register">Sign Up</a>
               <% } else{%>
               <div class="user-icon mr-3 nav-item">
-                <a href="#"><%= currentUser.name.charAt(0) %> </a>
+                <a href="/articles/user/profile/<%= currentUser.name %> "
+                  ><%= currentUser.name.charAt(0) %>
+                </a>
               </div>
               <a href="/users/logout" class="btn btn-secondary ml-auto"
                 >Logout</a
@@ -55,19 +64,12 @@
           </div>
         </div>
       </nav>
-
-      <!-- <div class="ui fixed inverted menu">
-        <div class="ui container">
-          <div class="header item"><i class="code icon"></i>Blog Site</div>
-          <a href="/" class="item">Home</a>
-          <a href="/blogs/new" class="item">New Blog</a>
-          <a href="/users/login" class="item">Login</a>
-          <a href="/users/register" class="item">Sign Up</a>
-        </div> -->
     </div>
-    <div class="container">
+    <div class="container main">
       <%- body %>
     </div>
+    <%- script %>
+
     <script
       src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
       integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"

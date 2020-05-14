@@ -2,10 +2,11 @@ const mongoose = require("mongoose");
 
 const connectToDatabase = () => {
     try {
-        mongoose.connect("mongodb://localhost:27017/my_intern_blog", {
+        mongoose.connect(process.env.DB_CONFIG, {
             useNewUrlParser: true,
             useUnifiedTopology: true,
-            useCreateIndex: true
+            useCreateIndex: true,
+            useFindAndModify: false
         }, () => {
             console.log("Database connected successfully")
         })

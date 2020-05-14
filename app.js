@@ -6,6 +6,8 @@ const flash = require("connect-flash")
 const methodOverride = require('method-override')
 const session = require("express-session")
 const seedDB = require("./Database/models/seed")
+const dotenv = require("dotenv")
+dotenv.config()
 //Routes
 const articleRouter = require("./routes/articles")
 const commentRouter = require("./routes/comments")
@@ -27,13 +29,15 @@ app.use(express.static(__dirname + '/public'));
 
 
 //EJS
-app.use(expressLayouts);
+app.set("layout extractScripts", true);
+
+app.use(expressLayouts)
 app.set("view engine", 'ejs')
 
 app.use(express.urlencoded({ extended: false }))
 app.use(methodOverride("_method"));
 
-checkAllRoutes
+
 
 //Express session middleware
 app.use(session({
@@ -70,6 +74,12 @@ app.use('/articles', commentRouter)
 app.get('/', async (req, res) => {
     const articles = await Blog.find().sort({ createdAt: 'desc' })
     res.render("articles/index", { articles: articles, currentUser: req.user })
+})
+
+
+app.get("/articles/user/profile/:name", async (req, res) => {
+    const articles = await Blog.find().sort({ createdAt: 'desc' })
+    res.render("user/profile", { articles: articles, currentUser: req.user })
 })
 
 app.use("/users", checkAllRoutes, require('./routes/users'))

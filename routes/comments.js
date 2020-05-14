@@ -1,7 +1,8 @@
 const router = require("express").Router()
 const Blog = require("../Database/models/blogModel")
 const Comment = require("../Database/models/commentModel")
-const { ensureAuthenticated } = require("../config/auth")
+const Reply = require("../Database/models/replyModel")
+const { ensureAuthenticated, checkCommentOwnerShip } = require("../config/auth")
 
 router.get("/:slug/comments/new", ensureAuthenticated, (req, res) => {
     Blog.findOne({ slug: req.params.slug }, (err, blog) => {
@@ -13,6 +14,7 @@ router.get("/:slug/comments/new", ensureAuthenticated, (req, res) => {
     })
 })
 
+//USER CAN COMMENT
 router.post("/:slug/comments", ensureAuthenticated, (req, res) => {
     Blog.findOne({ slug: req.params.slug }, (err, blog) => {
         if (err) {
@@ -33,29 +35,30 @@ router.post("/:slug/comments", ensureAuthenticated, (req, res) => {
             comment.save()
             blog.comments.push(comment);
             blog.save();
-            console.log(comment)
             res.redirect("/articles/" + blog.slug)
         })
     })
 })
 
-router.get("/:slug/comments/:id/edit", (req, res) => {
+router.get("/:slug/comments/:id/edit", ensureAuthenticated, checkCommentOwnerShip, (req, res) => {
     Comment.findById(req.params.id, (err, comment) => {
         if (err) {
             console.log(err)
             req.redirect("back")
         } else {
+
+
             res.render("comments/edit", { slug: req.params.slug, comment: comment })
 
         }
     })
 })
 
-router.put('/:slug/comments/:id', async (req, res) => {
-    console.log(req.params)
+//COMMENT EDIT ROUTE
+router.put('/:slug/comments/:id', ensureAuthenticated, checkCommentOwnerShip, async (req, res) => {
     try {
-        console.log(req)
-        await Comment.findByIdAndUpdate(req.params.id, req.body.text, { new: true })
+
+        await Comment.findByIdAndUpdate(req.params.id, { text: req.body.text }, { new: true })
         res.redirect("/articles/" + req.params.slug)
 
     } catch (err) {
@@ -63,6 +66,36 @@ router.put('/:slug/comments/:id', async (req, res) => {
         res.redirect("back")
     }
 })
+
+
+
+//COMMENT REPLY ROUTE
+
+// router.get("/:slug/comments/:id/reply", async (req, res) => {
+//     const blog = await Blog.findOne({ slug: req.params.slug })
+//     res.render("comments/reply", { blog: blog })
+// })
+
+
+// router.post("/:slug/comments/:id", async (req, res) => {
+//     res.send("comment posted")
+
+// })
+//COMMENT DESTROY ROUTE
+
+router.delete("/:slug/comments/:id", checkCommentOwnerShip, async (req, res) => {
+
+    await Comment.findByIdAndRemove(req.params.id)
+    const blog = await Blog.findOne({ slug: req.params.slug })
+
+    if (blog) {
+        let comments = blog.comments.filter(commentId => commentId != req.params.id)
+        await blog.updateOne({ comments })
+    }
+    res.redirect("/articles/" + req.params.slug)
+})
+
+
 
 
 

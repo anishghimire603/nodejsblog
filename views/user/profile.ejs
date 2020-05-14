@@ -1,11 +1,15 @@
-<h1 class="text-center mt-4 main-head">Latest Blogs</h1>
+<h1 class="text-center mt-4">My Blogs</h1>
 
-<% articles.forEach((article) => { %>
+<% articles.forEach((article) => { %> <% if(currentUser &&
+article.author.id.equals(currentUser._id)){ %>
+
 <div class="card mt-4 mb-4">
   <div class="card-body">
     <h1 class="card-title article-title"><%= article.title %></h1>
     <p class="user">
-      <i class="fas fa-user-circle mr-1"></i><%= article.author.username %>
+      <a href="/articles/user/profile/<%= currentUser.name %>"
+        ><i class="fas fa-user-circle mr-1"></i> <%= article.author.username %>
+      </a>
     </p>
     <div class="card-subtitle text-muted mb-2">
       <i class="far fa-calendar-alt mr-2"></i>
@@ -19,5 +23,4 @@
     >
   </div>
 </div>
-
-<% }) %>
+<%} %> <% }) %>

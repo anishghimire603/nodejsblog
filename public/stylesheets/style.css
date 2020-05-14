@@ -1,8 +1,18 @@
+body {
+  font-family: 'Lato', sans-serif;
+}
 .user {
   color: rgb(233, 85, 66);
   font-size: 17px;
 }
 
+nav {
+  padding: 5px !important;
+}
+.navbar-brand img {
+  height: 50px;
+  width: 50px;
+}
 .user-icon {
   background-color: white;
   border-radius: 50%;
@@ -14,7 +24,13 @@
   width: 35px;
   cursor: pointer;
 }
-
+.navbar-toggler {
+  border: none;
+}
+.navbar-toggler:focus {
+  outline: none;
+  border: none;
+}
 .user-icon a {
   color: red;
   text-transform: uppercase;
@@ -22,4 +38,11 @@
 .article-title {
   color: grey;
   text-transform: capitalize;
+  font-family: 'Lato', sans-serif;
+}
+
+.user a {
+  color: rgb(233, 85, 66);
+  font-size: 17px;
+  font-family: 'Lato', sans-serif;
 }
