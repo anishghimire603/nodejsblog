@@ -4,7 +4,7 @@ dotenv.config()
 
 const connectToDatabase = () => {
     try {
-        mongoose.connect(process.env.DB_CONFIG.toString(), {
+        mongoose.connect("mongodb+srv://sagar:sagar@cluster0-wwwwo.mongodb.net/test?retryWrites=true&w=majority", {
             useNewUrlParser: true,
             useUnifiedTopology: true,
             useCreateIndex: true,
