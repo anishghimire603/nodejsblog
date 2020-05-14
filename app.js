@@ -12,8 +12,7 @@ const articleRouter = require("./routes/articles")
 const commentRouter = require("./routes/comments")
 const checkAllRoutes = require("./middleware/allRoutes")
 const Blog = require("./Database/models/blogModel")
-const dotenv = require("dotenv")
-dotenv.config()
+
 
 
 const app = express();
