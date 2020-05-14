@@ -72,6 +72,7 @@ app.use('/articles', commentRouter)
 
 //Restful Routes
 app.get('/', async (req, res) => {
+
     const articles = await Blog.find().sort({ createdAt: 'desc' })
     res.render("articles/index", { articles: articles, currentUser: req.user })
 })
