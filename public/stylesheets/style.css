@@ -46,3 +46,8 @@ nav {
   font-size: 17px;
   font-family: 'Lato', sans-serif;
 }
+
+.container img {
+  height: 400px;
+  width: 500px;
+}
