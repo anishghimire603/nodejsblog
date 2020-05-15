@@ -65,7 +65,6 @@ function saveArticleUpdateAndRedirect(path) {
 
         //FOR USERS COLLECTION
         blog = req.article._id
-        console.log(blog)
         capital = username.charAt(0).toUpperCase() + username.slice(1)
         article.author = {
             username: capital,
@@ -73,23 +72,22 @@ function saveArticleUpdateAndRedirect(path) {
             email: req.user.email
         }
         article.title = req.body.title
-        article.description = req.body.description
         article.markdown = req.body.markdown
 
 
         try {
-            article = await article.save()
 
+            article = await article.save()
             //SAVE THE BLOG ID IN USERS COLLECTION
             await req.user.blog.push(blog)
             console.log(req.user.blog)
             req.user.save()
-            console.log(req.user)
             res.redirect(`/articles/${article.slug}`)
         } catch (err) {
             console.log(err)
             res.render(`articles/${path}`, { article: article })
         }
+
 
     }
 }
