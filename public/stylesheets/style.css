@@ -1,5 +1,5 @@
 body {
-  font-family: 'Lato', sans-serif;
+  font-family: 'Quicksand', sans-serif;
 }
 .user {
   color: rgb(233, 85, 66);
@@ -38,16 +38,16 @@ nav {
 .article-title {
   color: grey;
   text-transform: capitalize;
-  font-family: 'Lato', sans-serif;
+  font-family: 'Quicksand', sans-serif;
 }
 .article-body {
-  font-family: 'Lato', sans-serif;
+  font-family: 'Quicksand', sans-serif;
   font-size: 17px;
 }
 .user a {
   color: rgb(233, 85, 66);
   font-size: 17px;
-  font-family: 'Lato', sans-serif;
+  font-family: 'Quicksand', sans-serif;
 }
 
 .container img {
