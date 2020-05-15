@@ -1,125 +1,48 @@
-/* PrismJS 1.20.0
-https://prismjs.com/download.html#themes=prism-okaidia&languages=markup+css+clike+javascript */
-/**
- * okaidia theme for JavaScript, CSS and HTML
- * Loosely based on Monokai textmate theme by http://www.monokai.nl/
- * @author ocodia
- */
-
-code[class*='language-'],
-pre[class*='language-'] {
-  color: #f8f8f2;
-  background: none;
-  text-shadow: 0 1px rgba(0, 0, 0, 0.3);
-  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
-  font-size: 1em;
-  text-align: left;
-  white-space: pre;
-  word-spacing: normal;
-  word-break: normal;
-  word-wrap: normal;
-  line-height: 1.5;
-
-  -moz-tab-size: 4;
-  -o-tab-size: 4;
-  tab-size: 4;
-
-  -webkit-hyphens: none;
-  -moz-hyphens: none;
-  -ms-hyphens: none;
-  hyphens: none;
+body {
+  font-family: 'Lato', sans-serif;
+}
+.user {
+  color: rgb(233, 85, 66);
+  font-size: 17px;
 }
 
-/* Code blocks */
-pre[class*='language-'] {
-  padding: 1em;
-  margin: 0.5em 0;
-  overflow: auto;
-  border-radius: 0.3em;
+nav {
+  padding: 5px !important;
 }
-
-:not(pre) > code[class*='language-'],
-pre[class*='language-'] {
-  background: #272822;
+.navbar-brand img {
+  height: 50px;
+  width: 50px;
 }
-
-/* Inline code */
-:not(pre) > code[class*='language-'] {
-  padding: 0.1em;
-  border-radius: 0.3em;
-  white-space: normal;
-}
-
-.token.comment,
-.token.prolog,
-.token.doctype,
-.token.cdata {
-  color: slategray;
-}
-
-.token.punctuation {
-  color: #f8f8f2;
-}
-
-.token.namespace {
-  opacity: 0.7;
-}
-
-.token.property,
-.token.tag,
-.token.constant,
-.token.symbol,
-.token.deleted {
-  color: #f92672;
-}
-
-.token.boolean,
-.token.number {
-  color: #ae81ff;
-}
-
-.token.selector,
-.token.attr-name,
-.token.string,
-.token.char,
-.token.builtin,
-.token.inserted {
-  color: #a6e22e;
-}
-
-.token.operator,
-.token.entity,
-.token.url,
-.language-css .token.string,
-.style .token.string,
-.token.variable {
-  color: #f8f8f2;
-}
-
-.token.atrule,
-.token.attr-value,
-.token.function,
-.token.class-name {
-  color: #e6db74;
-}
-
-.token.keyword {
-  color: #66d9ef;
-}
-
-.token.regex,
-.token.important {
-  color: #fd971f;
-}
-
-.token.important,
-.token.bold {
+.user-icon {
+  background-color: white;
+  border-radius: 50%;
+  font-size: 23px;
   font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 35px;
+  cursor: pointer;
 }
-.token.italic {
-  font-style: italic;
+.navbar-toggler {
+  border: none;
+}
+.navbar-toggler:focus {
+  outline: none;
+  border: none;
+}
+.user-icon a {
+  color: red;
+  text-transform: uppercase;
+}
+.article-title {
+  color: grey;
+  text-transform: capitalize;
+  font-family: 'Lato', sans-serif;
 }
 
-.token.entity {
-  cursor: help;
+.user a {
+  color: rgb(233, 85, 66);
+  font-size: 17px;
+  font-family: 'Lato', sans-serif;
 }
