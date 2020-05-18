@@ -16,6 +16,8 @@ const userSchema = new mongoose.Schema({
     isLogged: {
         type: Boolean
     },
+    resetToken: String,
+    resetTokenExpire: Date,
     blog: [
         {
             type: mongoose.Schema.Types.ObjectId,
