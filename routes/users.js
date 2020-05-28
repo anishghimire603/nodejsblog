@@ -10,8 +10,8 @@ dotenv.config()
 const transporter = nodemailer.createTransport({
     service: "outlook",
     auth: {
-        user: process.env.EMAIL,
-        pass: process.env.PASSWORD
+        user: 'sagarkarki34@outlook.com',
+        pass: 'devilIsBad@'
     }
 });
 
@@ -87,7 +87,7 @@ router.post("/register", (req, res) => {
                                     req.flash('success_msg', "A confirmation code has been sent")
                                     res.redirect("/users/confirmation")
                                     return transporter.sendMail({
-                                        from: process.env.EMAIL,
+                                        from: 'sagarkarki34@outlook.com',
                                         to: user.email,
                                         subject: 'Confirm Verification || Blog App || Fusobotics',
                                         text: `Account Verification Code: ${confirmCode}`
