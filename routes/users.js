@@ -5,12 +5,13 @@ const passport = require("passport")
 const crypto = require("crypto")
 const nodemailer = require("nodemailer")
 const { ensureAuthenticated } = require("../config/auth")
-
+const dotenv = require("dotenv")
+dotenv.config()
 const transporter = nodemailer.createTransport({
     service: "outlook",
     auth: {
-        user: 'sagarkarki34@outlook.com',
-        pass: 'devilIsBad@'
+        user: process.env.EMAIL,
+        pass: process.env.PASSWORD
     }
 });
 
@@ -86,10 +87,10 @@ router.post("/register", (req, res) => {
                                     req.flash('success_msg', "A confirmation code has been sent")
                                     res.redirect("/users/confirmation")
                                     return transporter.sendMail({
-                                        from: 'sagarkarki34@outlook.com',
+                                        from: process.env.EMAIL,
                                         to: user.email,
-                                        subject: 'Confirm Login || Blog App || Fusobotics',
-                                        text: `Login Code ${confirmCode}`
+                                        subject: 'Confirm Verification || Blog App || Fusobotics',
+                                        text: `Account Verification Code: ${confirmCode}`
                                     })
                                 })
                                 .catch(err => console.log(err))
