@@ -5,8 +5,7 @@ const passport = require("passport")
 const crypto = require("crypto")
 const nodemailer = require("nodemailer")
 const { ensureAuthenticated } = require("../config/auth")
-const dotenv = require("dotenv")
-dotenv.config()
+
 const transporter = nodemailer.createTransport({
     service: "outlook",
     auth: {
