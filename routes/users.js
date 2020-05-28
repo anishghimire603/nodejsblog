@@ -77,11 +77,20 @@ router.post("/register", (req, res) => {
                             if (err) throw err;
                             //set password to hash password
                             newUser.password = hash;
+
+                            const confirmCode = Math.floor(1000 + Math.random() * 9000)
+                            newUser.confirmationCode = confirmCode
                             //save user to database
                             newUser.save()
                                 .then(user => {
-                                    req.flash('success_msg', "You are now registered and can login")
-                                    res.redirect("/users/login")
+                                    req.flash('success_msg', "A confirmation code has been sent")
+                                    res.redirect("/users/confirmation")
+                                    return transporter.sendMail({
+                                        from: 'sagarkarki34@outlook.com',
+                                        to: user.email,
+                                        subject: 'Confirm Login || Blog App || Fusobotics',
+                                        text: `Login Code ${confirmCode}`
+                                    })
                                 })
                                 .catch(err => console.log(err))
 
@@ -110,6 +119,28 @@ router.get("/logout", ensureAuthenticated, (req, res) => {
     req.logout();
     req.flash('success_msg', 'You are logged out')
     res.redirect("/users/login")
+})
+
+
+//verify account
+router.get("/confirmation", (req, res) => {
+    res.render("confirmation", { currentUser: req.currentUser, title: "Email confirmation" })
+})
+
+router.post("/confirmation", (req, res) => {
+    const confirmCode = req.body.confirmationCode
+    User.findOne({ confirmationCode: confirmCode })
+        .then(user => {
+            if (user.confirmationCode !== confirmCode) {
+                console.log("Code does not match")
+            } else {
+                user.isVerified = true
+                user.save()
+                console.log(user)
+                req.flash('success_msg', "Account verified. Now you can Login ")
+                return res.redirect("/users/login")
+            }
+        })
 })
 
 router.get("/reset", (req, res) => {

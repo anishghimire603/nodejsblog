@@ -13,9 +13,11 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    isLogged: {
-        type: Boolean
+    isVerified: {
+        type: Boolean,
+        default: false
     },
+    confirmationCode: String,
     resetToken: String,
     resetTokenExpire: Date,
     blog: [
