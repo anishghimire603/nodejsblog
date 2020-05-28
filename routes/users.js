@@ -17,10 +17,10 @@ const transporter = nodemailer.createTransport({
 
 
 //Login Page
-router.get("/login", (req, res) => res.render("login"));
+router.get("/login", (req, res) => res.render("login", { title: 'User Login' }));
 
 //Register Page
-router.get("/register", (req, res) => res.render('register'));
+router.get("/register", (req, res) => res.render('register', { title: 'User Register' }));
 
 
 //Register handel
@@ -113,7 +113,7 @@ router.get("/logout", ensureAuthenticated, (req, res) => {
 })
 
 router.get("/reset", (req, res) => {
-    res.render("reset")
+    res.render("reset", { title: 'Password Reset' })
 })
 
 router.post("/reset", (req, res) => {
@@ -152,7 +152,7 @@ router.get("/reset/:token", (req, res) => {
         .then(user => {
             console.log(user)
             const userId = user._id
-            res.render("new-password", { userId, passwordToken: token })
+            res.render("new-password", { userId, passwordToken: token, title: 'New Password' })
         })
         .catch(err => {
             console.log(err)

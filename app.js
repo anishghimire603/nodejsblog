@@ -74,19 +74,22 @@ app.use('/articles', commentRouter)
 app.get('/', async (req, res) => {
 
     const articles = await Blog.find().sort({ createdAt: 'desc' })
-    res.render("articles/index", { articles: articles, currentUser: req.user })
+    res.render("articles/index", { articles: articles, currentUser: req.user, title: 'Latest Blogs' })
 })
 
 
 app.get("/articles/user/profile/:name", async (req, res) => {
     const articles = await Blog.find().sort({ createdAt: 'desc' })
-    res.render("user/profile", { articles: articles, currentUser: req.user })
+    res.render("user/profile", { articles: articles, currentUser: req.user, title: `${req.user.name} blog posts` })
 })
 
 app.use("/users", checkAllRoutes, require('./routes/users'))
 
 
-
+//404 page
+app.get("*", (req, res) => {
+    res.render("404", { title: 'Page Not Found' })
+})
 
 
 

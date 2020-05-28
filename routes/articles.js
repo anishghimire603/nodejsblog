@@ -11,14 +11,14 @@ router.use((req, res, next) => {
 })
 
 router.get("/new", ensureAuthenticated, (req, res) => {
-    res.render("articles/new", { article: new Blog() })
+    res.render("articles/new", { article: new Blog(), title: "New Blog Post" })
 })
 
 
 router.get("/edit/:id", checkBlogOwnerShip, async (req, res) => {
 
     Blog.findById(req.params.id, (err, article) => {
-        res.render("articles/edit", { article: article })
+        res.render("articles/edit", { article: article, title: 'Edit Blog' })
     })
 
 
@@ -30,7 +30,7 @@ router.get("/:slug", async (req, res) => {
             console.log(err)
         }
         if (article == null) res.redirect("/")
-        res.render("articles/show", { article: article })
+        res.render("articles/show", { article: article, title: article.slug })
     })
 
 })
@@ -85,7 +85,7 @@ function saveArticleUpdateAndRedirect(path) {
             res.redirect(`/articles/${article.slug}`)
         } catch (err) {
             console.log(err)
-            res.render(`articles/${path}`, { article: article })
+            res.render(`articles/${path}`, { article: article, title: "New blog" })
         }
 
 
@@ -113,7 +113,7 @@ function editArticleAndRedirect(path) {
             res.redirect(`/articles/${article.slug}`)
         } catch (err) {
             console.log(err)
-            res.render(`articles/${path}`, { article: article })
+            res.render(`articles/${path}`, { article: article, title: 'Edit Blog' })
         }
 
     }

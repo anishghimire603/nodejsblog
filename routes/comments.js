@@ -9,7 +9,7 @@ router.get("/:slug/comments/new", ensureAuthenticated, (req, res) => {
         if (err) {
             console.log(err)
         }
-        res.render('comments/new', { blog: blog })
+        res.render('comments/new', { blog: blog, title: `${req.params.slug} new comment` })
 
     })
 })
@@ -48,7 +48,7 @@ router.get("/:slug/comments/:id/edit", ensureAuthenticated, checkCommentOwnerShi
         } else {
 
 
-            res.render("comments/edit", { slug: req.params.slug, comment: comment })
+            res.render("comments/edit", { slug: req.params.slug, comment: comment, title: 'Edit Comment' })
 
         }
     })
