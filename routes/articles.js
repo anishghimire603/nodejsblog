@@ -72,7 +72,7 @@ function saveArticleUpdateAndRedirect(path) {
             email: req.user.email
         }
         article.title = req.body.title
-        article.markdown = req.body.markdown
+        article.markdown = req.body.markdown.trim()
 
 
         try {
