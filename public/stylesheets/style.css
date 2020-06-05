@@ -92,3 +92,9 @@ nav {
 .container .error__back:hover {
   background: #e55039;
 }
+
+blockquote {
+  background-color: #e4e0e0;
+  border-left: 4px solid #646567;
+  padding: 10px;
+}
