@@ -1,8 +1,8 @@
-# This is a Blog Site Made with Nodejs
+# This is a Markdown Blog Site Made with Nodejs
 
 ---
 
-### How to SetUp the project 
+## How to SetUp the project 
 
 * git clone <repo url>
 * npm install
@@ -10,12 +10,22 @@
 * npm start
 > The project will start on localhost:3000
   
-##Tools Used
+## Tools Used
 
   * NodeJs for the backend
-  * Express
+  * Express 
+  * MongoDB for Database
   * Bootstrap for the UI
   * Passport.js for authentication
   * Nodemailer for sending verification email
   * EJS Template
+  * Markdown syntax
+  
+## Features
+
+  * User registration
+  * User can post his/her blogs using markdown.
+  * Other users can comment on the blogs
+  * Easy to use
+  
   
