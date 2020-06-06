@@ -32,13 +32,14 @@
 
 ### Home
 
-![home][https://github.com/sagar608/nodejsblog/blob/master/screenshots/home.png]
+![home](https://github.com/sagar608/nodejsblog/blob/master/screenshots/home.png)
 
 ### Register and Login
 
-![registration][https://github.com/sagar608/nodejsblog/blob/master/screenshots/register.png]
-![registration][https://github.com/sagar608/nodejsblog/blob/master/screenshots/login.png]
+![registration](https://github.com/sagar608/nodejsblog/blob/master/screenshots/register.png)
+
+![registration](https://github.com/sagar608/nodejsblog/blob/master/screenshots/login.png)
 
 ### New Blog
 
-![new][https://github.com/sagar608/nodejsblog/blob/master/screenshots/new.png]
+![new](https://github.com/sagar608/nodejsblog/blob/master/screenshots/new.png)
