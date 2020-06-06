@@ -29,6 +29,7 @@
 - Other users can comment on the blogs
 - Easy to use
 - Mobile Responsive
+- Password Reset
 
 ### Home
 
