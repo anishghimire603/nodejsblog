@@ -2,7 +2,4 @@
 
 ---
 
-'''
-How to set up
-
-'''
+> How to SetUp the project 
