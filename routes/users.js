@@ -9,8 +9,8 @@ const { ensureAuthenticated } = require("../config/auth")
 const transporter = nodemailer.createTransport({
     service: "outlook",
     auth: {
-        user: 'sagarkarki34@outlook.com',
-        pass: 'devilIsBad@'
+        user: process.env.EMAIL,
+        pass: process.env.PASS
     }
 });
 
@@ -86,7 +86,7 @@ router.post("/register", (req, res) => {
                                     req.flash('success_msg', "A confirmation code has been sent")
                                     res.redirect("/users/confirmation")
                                     return transporter.sendMail({
-                                        from: 'sagarkarki34@outlook.com',
+                                        from: 'email@email.com',
                                         to: user.email,
                                         subject: 'Confirm Verification || Blog App || Fusobotics',
                                         text: `Account Verification Code: ${confirmCode}`
