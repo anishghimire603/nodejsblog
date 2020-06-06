@@ -20,6 +20,7 @@
   * Nodemailer for sending verification email
   * EJS Template
   * Markdown syntax
+  * Heroku for deployment
   
 ## Features
 
@@ -27,5 +28,8 @@
   * User can post his/her blogs using markdown.
   * Other users can comment on the blogs
   * Easy to use
+  * Mobile Responsive
+  
+
   
   
